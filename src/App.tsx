@@ -10,7 +10,7 @@ function App() {
     return <AuthContext.Provider value={auth}>
         <Header />
         <main>
-            <Chat />
+            {auth.user && <Chat displayName={auth.user.displayName} />}
         </main>
     </AuthContext.Provider>;
 }

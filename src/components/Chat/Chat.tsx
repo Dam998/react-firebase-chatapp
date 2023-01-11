@@ -6,7 +6,7 @@ import MessageBox from "../MessageBox";
 
 import "./Chat.scss";
 
-const SendMessage = memo(({ sendMessage, sending }: { sendMessage(message: string): void, sending: boolean, user: User }) => {
+const SendMessage = memo(({ sendMessage, sending }: { sendMessage(message: string): void, sending: boolean }) => {
     const [messageValue, setMessageValue] = useState("");
 
     const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -21,12 +21,11 @@ const SendMessage = memo(({ sendMessage, sending }: { sendMessage(message: strin
     </form>;
 });
 
-const Chat = () => {
-    const { user } = useContext(AuthContext);
+const Chat = ({ displayName }: { displayName: string | null }) => {
     const { messages, sendMessage, sending } = useMessages();
 
-    return user && <div className="chat">
-        <p className="userName">{user.displayName}</p>
+    return <div className="chat">
+        <p className="userName">{displayName}</p>
         <ul className="messageList">
             {
                 messages.map(message => {
@@ -34,7 +33,7 @@ const Chat = () => {
                 })
             }
         </ul>
-        <SendMessage sendMessage={sendMessage} sending={sending} user={user} />
+        <SendMessage sendMessage={sendMessage} sending={sending} />
     </div>;
 }
 
