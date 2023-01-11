@@ -13,7 +13,7 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          # firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_CHATAPP_ECA7F }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_CHATAPP_ECA7F }}'
           projectId: react-chatapp-eca7f
         env:
           VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
